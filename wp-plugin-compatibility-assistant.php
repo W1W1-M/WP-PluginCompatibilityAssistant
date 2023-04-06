@@ -35,4 +35,14 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with WP Plugin Compatibility Assistant. If not, see https://www.gnu.org/licenses/gpl-3.0.html.
 */
+
+require_once plugin_dir_path( __FILE__ ) . 'admin/class-wp-pca-options.php';
+
+add_action('init', 'wp_pca_options_init', 99, 0);
+
+function wp_pca_options_init() {
+    $wp_pca_options = new WP_PCA_Options();
+    $wp_pca_options->run();
+}
+
 ?>
