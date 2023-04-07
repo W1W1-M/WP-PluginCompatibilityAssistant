@@ -20,6 +20,7 @@ class WP_PCA_Options {
             ?>
             <div class="wrap">
                 <h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
+                <?php $this->plugin_table() ?>
             </div>
             <?php
         } else {
@@ -30,6 +31,21 @@ class WP_PCA_Options {
             </div>
             <?php
         }
+    }
+    public function plugin_table() {
+        ?>
+            <table>
+                <tr>
+                    <th>Plugin</th>
+                    <th>Path</th>
+                    <th>Version (current)</th>
+                    <th>Version (latest)</th>
+                    <th>WordPress minimum version (required)</th>
+                    <th>WordPress maximum version (tested)</th>
+                    <th>PHP minimum version (required)</th>
+                </tr>
+            </table>
+        <?php
     }
 }
 
