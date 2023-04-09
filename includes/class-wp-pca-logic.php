@@ -19,6 +19,7 @@ class WP_PCA_Logic {
 
     public function get_installed_plugins() {
         $this->installed_plugins = get_plugins();
+        return $this->installed_plugins;
     }
 
     public function count_installed_plugins() {
