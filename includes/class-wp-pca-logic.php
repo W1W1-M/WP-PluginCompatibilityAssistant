@@ -4,12 +4,12 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 class WP_PCA_Logic {
 
-    public $installed_plugins;
-    public $installed_plugins_count;
+    private array $installed_plugins = [];
+    private ?int $installed_plugins_count = NULL;
 
     public function __construct() {
-        $this->$installed_plugins = [];
-        $this->$installed_plugins_count = NULL;
+        $this->installed_plugins = [];
+        $this->installed_plugins_count = NULL;
     }
 
     public function run() {
@@ -18,11 +18,11 @@ class WP_PCA_Logic {
     }
 
     public function get_installed_plugins() {
-        $this->$installed_plugins = get_plugins();
+        $this->installed_plugins = get_plugins();
     }
 
     public function count_installed_plugins() {
-        $this->$installed_plugins_count = count($this->$installed_plugins);
+        $this->installed_plugins_count = count($this->installed_plugins);
     }
 }
 
