@@ -45,7 +45,7 @@ function wp_pca_init() {
     $wp_pca_logic = new WP_PCA_Logic();
     $wp_pca_logic->run();
     $wp_pca_options = new WP_PCA_Options();
-    $wp_pca_options->run($wp_pca_logic->get_installed_plugins());
+    $wp_pca_options->run($wp_pca_logic);
 }
 
 ?>
