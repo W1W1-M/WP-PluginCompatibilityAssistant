@@ -2,32 +2,44 @@
 
 class WP_PCA_Options {
 
-    public function run( $installed_plugins ) {
-        add_action('admin_menu', function() use ( $installed_plugins ) {
-            $this->page($installed_plugins);
+    public function run( $wp_pca_logic ) {
+        add_action('admin_menu', function() use ( $wp_pca_logic ) {
+            $this->page($wp_pca_logic);
         }); 
     }
 
-    public function page( $installed_plugins ) {
+    public function page( $wp_pca_logic ) {
         add_submenu_page(
             'tools.php',
             'WP Plugin Compatibility Assistant',
             'WP Plugin Compatibility Assistant',
             'manage_options',
             'wp-plugin-compatibility-assistant',
-            function() use ( $installed_plugins ) {
-                $this->page_html($installed_plugins);
+            function() use ( $wp_pca_logic ) {
+                $this->page_html($wp_pca_logic);
             }
         );
     }
 
-    public function page_html( $installed_plugins ) {
+    public function page_html( $wp_pca_logic ) {
         // check user capabilities
         if ( current_user_can( 'manage_options' ) ) {
             ?>
             <div class="wrap">
                 <h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
-                <?php $this->load_plugin_table( $installed_plugins ) ?>
+                <table class="wp-pca-table">
+                    <tr>
+                        <th><h2>PHP version</h2></th>
+                        <th><h2>WordPress version</h2></th>
+                        <th><h2>Plugin path</h2></th>
+                    </tr>
+                    <tr>
+                        <td><h2><?php $wp_pca_logic->print_php_version(); ?></h2></td>
+                        <td><h2><?php $wp_pca_logic->print_wordpress_version(); ?></h2></td>
+                        <td><h2><?php $wp_pca_logic->print_plugins_url(); ?></h2></td>
+                    </tr>
+                </table>
+                <?php $this->load_plugin_table( $wp_pca_logic ) ?>
             </div>
             <?php
         } else {
@@ -54,12 +66,12 @@ class WP_PCA_Options {
         <?php
     }
 
-    public function load_plugin_table( $installed_plugins ) {
+    public function load_plugin_table( $wp_pca_logic ) {
         ?>
             <table>
         <?php
         $this->plugin_table_header();
-        foreach ($installed_plugins as $plugin) {
+        foreach ($wp_pca_logic->get_installed_plugins() as $plugin) {
             ?> 
                 <tr>
             <?php
