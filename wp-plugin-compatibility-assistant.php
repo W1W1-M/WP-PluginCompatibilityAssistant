@@ -41,6 +41,8 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-pca-logic.php';
 
 add_action('plugins_loaded', 'wp_pca_init', 99,0);
 
+wp_enqueue_style('style-wp-pca', plugins_url('admin//css/style-wp-pca.css', __FILE__));
+
 function wp_pca_init() {
     $wp_pca_logic = new WP_PCA_Logic();
     $wp_pca_logic->run();

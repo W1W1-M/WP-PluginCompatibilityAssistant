@@ -1,0 +1,12 @@
+.wp-pca-table {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    border: solid 1px;
+    border-collapse: collapse;
+    padding: 2%;
+}
+
+th, td {
+    border: solid 1px;
+}
