@@ -31,12 +31,12 @@ class WP_PCA_Options {
                     <tr>
                         <th><h2>PHP version</h2></th>
                         <th><h2>WordPress version</h2></th>
-                        <th><h2>Plugin path</h2></th>
+                        <th><h2>Plugins path</h2></th>
                     </tr>
                     <tr>
-                        <td><h2><?php $wp_pca_logic->print_php_version(); ?></h2></td>
-                        <td><h2><?php $wp_pca_logic->print_wordpress_version(); ?></h2></td>
-                        <td><h2><?php $wp_pca_logic->print_plugins_url(); ?></h2></td>
+                        <td><h4><?php $wp_pca_logic->print_php_version(); ?></h4></td>
+                        <td><h4><?php $wp_pca_logic->print_wordpress_version(); ?></h4></td>
+                        <td><h4><?php $wp_pca_logic->print_plugins_url(); ?></h4></td>
                     </tr>
                 </table>
                 <?php $this->load_plugin_table( $wp_pca_logic ) ?>
@@ -68,28 +68,19 @@ class WP_PCA_Options {
 
     public function load_plugin_table( $wp_pca_logic ) {
         ?>
-            <table>
+            <table class="wp-pca-table">
         <?php
         $this->plugin_table_header();
         foreach ($wp_pca_logic->get_installed_plugins() as $plugin) {
             ?> 
                 <tr>
-            <?php
-            foreach ($plugin as $metadata_key => $metadata_value) {
-                switch ($metadata_key) {
-                    case 'Name':
-                        ?> 
-                            <td> <?php echo $metadata_value; ?> </td>
-                        <?php
-                        break;
-                    case 'Version':
-                        ?> 
-                            <td> <?php echo $metadata_value; ?> </td>
-                        <?php
-                        break;
-                }
-            }
-            ?> 
+                    <td><?php echo $plugin['Name']?></td>
+                    <td></td>
+                    <td><?php echo $plugin['Version']?></td>
+                    <td></td>
+                    <td><?php echo $plugin['RequiresWP']?></td>
+                    <td></td>
+                    <td><?php echo $plugin['RequiresPHP']?></td>
                 </tr>
             <?php
         }
