@@ -12,8 +12,8 @@
     * Plugin URI:        https://wp-plugincompatibilityassistant.m34d.com
     * Description:       A WordPress plugin to assist website administrators in managing plugin compatibility
     * Version:           0.1.0
-    * Requires at least: 5.9
-    * Requires PHP:      8.0
+    * Requires at least: 5.9.5
+    * Requires PHP:      8.0.28
     * Author:            William Mead
     * Author URI:        https://m34d.com
     * License:           GNU GPLv3
