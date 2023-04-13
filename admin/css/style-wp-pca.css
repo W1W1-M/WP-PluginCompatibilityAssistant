@@ -7,6 +7,10 @@
     padding: 2%;
 }
 
-th, td {
+table.wp-pca-table td {
+    border: solid 1px;
+}
+
+table.wp-pca-table th {
     border: solid 1px;
 }
