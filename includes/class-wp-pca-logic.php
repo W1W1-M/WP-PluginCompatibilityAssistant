@@ -2,6 +2,7 @@
 
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
 require_once ABSPATH . 'wp-includes/general-template.php';
+require_once ABSPATH . 'wp-admin/includes/plugin-install.php';
 
 class WP_PCA_Logic {
 
@@ -12,6 +13,7 @@ class WP_PCA_Logic {
     private ?string $plugins_url;
     private ?string $wordpress_version;
     private ?string $php_version;
+    private array $installed_plugins_metadata;
 
     // class methods
 
@@ -21,6 +23,7 @@ class WP_PCA_Logic {
         $this->plugins_url = NULL;
         $this->wordpress_version = NULL;
         $this->php_version = NULL;
+        $this->installed_plugins_metadata = [];
     }
 
     public function run() {
@@ -29,6 +32,7 @@ class WP_PCA_Logic {
         $this->get_plugins_url();
         $this->get_wordpress_version();
         $this->get_php_version();
+        $this->get_installed_plugins_metadata();
     }
 
     // installed_plugins methods
@@ -40,6 +44,17 @@ class WP_PCA_Logic {
 
     public function count_installed_plugins() {
         $this->installed_plugins_count = count($this->installed_plugins);
+    }
+
+    public function get_installed_plugins_metadata() {
+        $this->installed_plugins_metadata = [];
+        foreach ($this->installed_plugins as $plugin=>$metadata) {
+            $plugin_slug = dirname(plugin_basename($plugin));
+            $plugin_page = plugins_api('plugin_information', array('slug' => $plugin_slug));
+            array_push($metadata, $plugin_page);
+            array_push($this->installed_plugins_metadata, $metadata);
+        }
+        return $this->installed_plugins_metadata;
     }
 
     // plugins_url methods
