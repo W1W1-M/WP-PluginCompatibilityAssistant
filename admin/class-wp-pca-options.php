@@ -17,6 +17,7 @@ class WP_PCA_Options {
             'wp-plugin-compatibility-assistant',
             function() use ( $wp_pca_logic ) {
                 $this->page_html($wp_pca_logic);
+                $this->dump_plugin_metadata_debug_info($wp_pca_logic);
             }
         );
     }
@@ -59,9 +60,9 @@ class WP_PCA_Options {
                 <th>Path</th>
                 <th>Version (current)</th>
                 <th>Version (latest)</th>
+                <th>PHP minimum version (required)</th>
                 <th>WordPress minimum version (required)</th>
                 <th>WordPress maximum version (tested)</th>
-                <th>PHP minimum version (required)</th>
             </tr>
         <?php
     }
@@ -75,12 +76,12 @@ class WP_PCA_Options {
             ?> 
                 <tr>
                     <td><?php echo $plugin['Name']?></td>
-                    <td></td>
+                    <td><?php echo $plugin['path']?></td>
                     <td><?php echo $plugin['Version']?></td>
-                    <td></td>
-                    <td><?php echo $plugin['RequiresWP']?></td>
-                    <td></td>
+                    <td><?php echo $plugin['version']?></td>
                     <td><?php echo $plugin['RequiresPHP']?></td>
+                    <td><?php echo $plugin['RequiresWP']?></td>
+                    <td><?php echo $plugin['tested']?></td>
                 </tr>
             <?php
         }
@@ -89,6 +90,12 @@ class WP_PCA_Options {
         <?php
     }
 
+    public function dump_plugin_metadata_debug_info( $wp_pca_logic ) {
+        foreach ($wp_pca_logic->get_installed_plugins_metadata() as $plugin) {
+            ?><p>Plugin metadata : </p><?php
+            var_dump($plugin);
+        }
+    }
 }
 
 ?>
