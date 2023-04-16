@@ -32,7 +32,6 @@ class WP_PCA_Logic {
         $this->get_plugins_url();
         $this->get_wordpress_version();
         $this->get_php_version();
-        $this->get_installed_plugins_metadata();
     }
 
     // installed_plugins methods
@@ -48,11 +47,46 @@ class WP_PCA_Logic {
 
     public function get_installed_plugins_metadata() {
         $this->installed_plugins_metadata = [];
+        $plugin_page_fields = array(
+            'active_installs' => false,
+            'added' => true, 
+            'author' => true,
+            'author_profile' => true,
+            'banners' => false,
+            'compatibility' => false,
+            'contributors' => false,
+            'description' => false,
+            'donate_link' => false,
+            'download_link' => false,
+            'downloaded' => false,
+            'homepage' => true,
+            'icons' => true,
+            'last_updated' => true,
+            'name' => true,
+            'num_ratings' => true,
+            'rating' => true,
+            'ratings' => true,
+            'requires' => true,
+            'requires_php' => true,
+            'screenshots' => false,
+            'sections' => false,
+            'short_description' => false,
+            'slug' => true,
+            'support_threads' => false,
+            'support_threads_resolved' => false,
+            'tags' => true,
+            'tested' => true,
+            'version' => true,
+            'versions' => true,
+        );
         foreach ($this->installed_plugins as $plugin=>$metadata) {
+            $metadata['path'] = key($this->installed_plugins);
             $plugin_slug = dirname(plugin_basename($plugin));
-            $plugin_page = plugins_api('plugin_information', array('slug' => $plugin_slug));
-            array_push($metadata, $plugin_page);
-            array_push($this->installed_plugins_metadata, $metadata);
+            $plugin_page = plugins_api('plugin_information', array('slug' => $plugin_slug, 'fields' => $plugin_page_fields));
+            foreach ($plugin_page as $page_metadata=>$value) {
+                $metadata[$page_metadata] = $value;
+            }
+            $this->installed_plugins_metadata[$plugin] = $metadata;
         }
         return $this->installed_plugins_metadata;
     }
