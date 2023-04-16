@@ -10,9 +10,9 @@ class WP_PCA_Options {
 
     public function page( $wp_pca_logic ) {
         add_submenu_page(
-            'tools.php',
+            'plugins.php',
             'WP Plugin Compatibility Assistant',
-            'WP Plugin Compatibility Assistant',
+            'Plugin Compatibility',
             'manage_options',
             'wp-plugin-compatibility-assistant',
             function() use ( $wp_pca_logic ) {
@@ -71,7 +71,7 @@ class WP_PCA_Options {
             <table class="wp-pca-table">
         <?php
         $this->plugin_table_header();
-        foreach ($wp_pca_logic->get_installed_plugins() as $plugin) {
+        foreach ($wp_pca_logic->get_installed_plugins_metadata() as $plugin) {
             ?> 
                 <tr>
                     <td><?php echo $plugin['Name']?></td>
