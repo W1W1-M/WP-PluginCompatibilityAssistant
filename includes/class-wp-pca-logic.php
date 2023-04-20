@@ -80,7 +80,8 @@ class WP_PCA_Logic {
             'versions' => true,
         );
         foreach ($this->installed_plugins as $plugin=>$metadata) {
-            $metadata['path'] = key($this->installed_plugins);
+            $metadata['path'] = $plugin;
+            $metadata['status'] = $this->get_plugin_status($plugin);
             $plugin_slug = dirname(plugin_basename($plugin));
             $plugin_page = plugins_api('plugin_information', array('slug' => $plugin_slug, 'fields' => $plugin_page_fields));
             foreach ($plugin_page as $page_metadata=>$value) {
@@ -89,6 +90,11 @@ class WP_PCA_Logic {
             $this->installed_plugins_metadata[$plugin] = $metadata;
         }
         return $this->installed_plugins_metadata;
+    }
+
+    public function get_plugin_status( $plugin ) {
+        $status = is_plugin_active($plugin);
+        return $status;
     }
 
     // plugins_url methods
