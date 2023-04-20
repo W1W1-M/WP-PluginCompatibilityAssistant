@@ -5,16 +5,22 @@
     border: solid 1px;
     border-collapse: collapse;
     border-color: #808080;
-    padding: 2%;
+    margin: 1%;
 }
 
 table.wp-pca-table td {
     border-top: solid 1px;
     border-color: #808080;
     background-color: #fff;
+    padding: 1%;
 }
 
 table.wp-pca-table th {
     border: solid 0px;
     background-color: #fff;
+    padding: 1%;
+}
+
+.debug {
+    margin: 1%;
 }
