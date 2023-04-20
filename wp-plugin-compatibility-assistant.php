@@ -9,7 +9,7 @@
     *
     * @wordpress-plugin
     * Plugin Name:       WP Plugin Compatibility Assistant
-    * Plugin URI:        https://wp-plugincompatibilityassistant.m34d.com
+    * Plugin URI:        https://github.com/W1W1-M/WP-PluginCompatibilityAssistant
     * Description:       A WordPress plugin to assist website administrators in managing plugin compatibility
     * Version:           0.1.0
     * Requires at least: 5.9.5
