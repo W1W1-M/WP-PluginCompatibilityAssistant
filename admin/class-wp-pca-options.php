@@ -79,9 +79,9 @@ class WP_PCA_Options {
         foreach ($wp_pca_logic->get_installed_plugins_metadata() as $plugin) {
             ?> 
                 <tr>
-                    <td><?php echo $plugin['Name']?></td>
+                    <td><a href="<?php echo $plugin['PluginURI']?>" target="_blank"><?php echo $plugin['Name']?></a></td>
                     <td><?php echo $plugin['path']?></td>
-                    <td><?php echo $plugin['Author']?></td>
+                    <td><a href="<?php echo $plugin['AuthorURI']?>" target="_blank"><?php echo $plugin['Author']?></a></td>
                     <td><?php echo $plugin['Version']?></td>
                     <td><?php echo $plugin['version'] . " (" . $plugin['last_updated'] . ")"?></td>
                     <td><?php echo $plugin['RequiresPHP']?></td>
