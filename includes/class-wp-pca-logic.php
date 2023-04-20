@@ -84,8 +84,14 @@ class WP_PCA_Logic {
             $metadata['status'] = $this->get_plugin_status($plugin);
             $plugin_slug = dirname(plugin_basename($plugin));
             $plugin_page = plugins_api('plugin_information', array('slug' => $plugin_slug, 'fields' => $plugin_page_fields));
-            foreach ($plugin_page as $page_metadata=>$value) {
-                $metadata[$page_metadata] = $value;
+            if (is_wp_error($plugin_page)) {
+                foreach ($plugin_page_fields as $key=>$value) {
+                    $metadata[$key] = "Unknown metadata";
+                }
+            } else {
+                foreach ($plugin_page as $page_metadata=>$value) {
+                    $metadata[$page_metadata] = $value;
+                }
             }
             $this->installed_plugins_metadata[$plugin] = $metadata;
         }
