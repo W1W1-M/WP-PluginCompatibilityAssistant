@@ -28,6 +28,7 @@ class WP_PCA_Options {
             ?>
             <div class="wrap">
                 <h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
+                <h2>Your WP site</h2>
                 <table class="wp-pca-table">
                     <tr>
                         <th><h2>PHP version</h2></th>
@@ -40,6 +41,7 @@ class WP_PCA_Options {
                         <td><h4><?php $wp_pca_logic->print_plugins_url(); ?></h4></td>
                     </tr>
                 </table>
+                <h2>Your WP plugins</h2>
                 <?php $this->load_plugin_table( $wp_pca_logic ) ?>
             </div>
             <?php
@@ -64,6 +66,7 @@ class WP_PCA_Options {
                 <th>PHP minimum version (required)</th>
                 <th>WordPress minimum version (required)</th>
                 <th>WordPress maximum version (tested)</th>
+                <th>Status</th>
             </tr>
         <?php
     }
@@ -84,6 +87,7 @@ class WP_PCA_Options {
                     <td><?php echo $plugin['RequiresPHP']?></td>
                     <td><?php echo $plugin['RequiresWP']?></td>
                     <td><?php echo $plugin['tested']?></td>
+                    <td><?php echo $plugin['status']?></td>
                 </tr>
             <?php
         }
