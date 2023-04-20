@@ -58,6 +58,7 @@ class WP_PCA_Options {
             <tr>
                 <th>Plugin</th>
                 <th>Path</th>
+                <th>Author</th>
                 <th>Version (current)</th>
                 <th>Version (latest)</th>
                 <th>PHP minimum version (required)</th>
@@ -77,8 +78,9 @@ class WP_PCA_Options {
                 <tr>
                     <td><?php echo $plugin['Name']?></td>
                     <td><?php echo $plugin['path']?></td>
+                    <td><?php echo $plugin['Author']?></td>
                     <td><?php echo $plugin['Version']?></td>
-                    <td><?php echo $plugin['version']?></td>
+                    <td><?php echo $plugin['version'] . " (" . $plugin['last_updated'] . ")"?></td>
                     <td><?php echo $plugin['RequiresPHP']?></td>
                     <td><?php echo $plugin['RequiresWP']?></td>
                     <td><?php echo $plugin['tested']?></td>
