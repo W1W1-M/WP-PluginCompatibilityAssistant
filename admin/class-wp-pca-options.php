@@ -98,8 +98,14 @@ class WP_PCA_Options {
 
     public function dump_plugin_metadata_debug_info( $wp_pca_logic ) {
         foreach ($wp_pca_logic->get_installed_plugins_metadata() as $plugin) {
-            ?><p>Plugin metadata : </p><?php
-            var_dump($plugin);
+            ?><h3>Plugin metadata : <?php echo $plugin['Name']?> </h3><?php
+            foreach ($plugin as $key=>$value) {
+                ?> <p class="debug"> <strong>key :</strong> <?php
+                var_dump($key);
+                ?> </p><p class="debug"><strong>| value :</strong> <?php
+                var_dump($value);
+                ?> </p> <?php
+            }
         }
     }
 }
