@@ -1,8 +1,9 @@
 <?php
 
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
-require_once ABSPATH . 'wp-includes/general-template.php';
 require_once ABSPATH . 'wp-admin/includes/plugin-install.php';
+require_once ABSPATH . 'wp-includes/general-template.php';
+require_once ABSPATH . 'wp-includes/link-template.php';
 
 class WP_PCA_Logic {
 
@@ -14,6 +15,7 @@ class WP_PCA_Logic {
     private ?string $wordpress_version;
     private ?string $php_version;
     private array $installed_plugins_metadata;
+    private ?string $site_url;
 
     // class methods
 
@@ -24,6 +26,7 @@ class WP_PCA_Logic {
         $this->wordpress_version = NULL;
         $this->php_version = NULL;
         $this->installed_plugins_metadata = [];
+        $this->site_url = NULL;
     }
 
     public function run() {
@@ -32,6 +35,7 @@ class WP_PCA_Logic {
         $this->get_plugins_url();
         $this->get_wordpress_version();
         $this->get_php_version();
+        $this->get_wp_site_url();
     }
 
     // installed_plugins methods
@@ -133,6 +137,16 @@ class WP_PCA_Logic {
 
     public function print_php_version() {
         echo $this->php_version;
+    }
+
+    public function get_wp_site_url() {
+        $this->site_url = site_url();
+        return $this->site_url;
+    }
+
+    public function get_plugin_editor_url( $plugin_path ) {
+        $plugin_editor_url = $this->get_wp_site_url() . "/wp-admin/plugin-editor.php?plugin=" . $plugin_path . "&Submit=Select";
+        return $plugin_editor_url;
     }
 }
 
