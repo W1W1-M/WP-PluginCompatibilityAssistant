@@ -76,11 +76,11 @@ class WP_PCA_Options {
             <table class="wp-pca-table">
         <?php
         $this->plugin_table_header();
-        foreach ($wp_pca_logic->get_installed_plugins_metadata() as $plugin) {
+        foreach ($wp_pca_logic->get_installed_plugins_metadata() as $plugin_path=>$plugin) {
             ?> 
                 <tr>
                     <td><a href="<?php echo $plugin['PluginURI']?>" target="_blank"><?php echo $plugin['Name']?></a></td>
-                    <td><?php echo $plugin['path']?></td>
+                    <td><a href="<?php echo $wp_pca_logic->get_plugin_editor_url($plugin_path)?>" target="_blank"><?php echo $plugin['path']?></a></td>
                     <td><a href="<?php echo $plugin['AuthorURI']?>" target="_blank"><?php echo $plugin['Author']?></a></td>
                     <td><?php echo $plugin['Version']?></td>
                     <td><?php echo $plugin['version'] . " (" . $plugin['last_updated'] . ")"?></td>
@@ -97,6 +97,7 @@ class WP_PCA_Options {
     }
 
     public function dump_plugin_metadata_debug_info( $wp_pca_logic ) {
+        ?><h2>Debug info</h2><?php
         foreach ($wp_pca_logic->get_installed_plugins_metadata() as $plugin) {
             ?><h3>Plugin metadata : <?php echo $plugin['Name']?> </h3><?php
             foreach ($plugin as $key=>$value) {
