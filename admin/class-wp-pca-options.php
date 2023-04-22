@@ -1,11 +1,15 @@
 <?php
 
+require_once ABSPATH . 'wp-includes/option.php';
+require_once ABSPATH . 'wp-admin/includes/template.php';
+
 class WP_PCA_Options {
 
     public function run( $wp_pca_logic ) {
         add_action('admin_menu', function() use ( $wp_pca_logic ) {
             $this->page($wp_pca_logic);
-        }); 
+        });
+        add_action('admin_init', array(&$this, 'wp_pca_debug_info_settings_init'));
     }
 
     public function page( $wp_pca_logic ) {
@@ -17,7 +21,6 @@ class WP_PCA_Options {
             'wp-plugin-compatibility-assistant',
             function() use ( $wp_pca_logic ) {
                 $this->page_html($wp_pca_logic);
-                $this->dump_plugin_metadata_debug_info($wp_pca_logic);
             }
         );
     }
@@ -43,6 +46,7 @@ class WP_PCA_Options {
                 </table>
                 <h2>Your WP plugins</h2>
                 <?php $this->load_plugin_table( $wp_pca_logic ) ?>
+                <?php if ($this->get_pca_debug_info_option() == true) {$this->dump_plugin_metadata_debug_info($wp_pca_logic);} ?>
             </div>
             <?php
         } else {
@@ -108,6 +112,56 @@ class WP_PCA_Options {
                 ?> </p> <?php
             }
         }
+    }
+
+    // PCA options methods
+
+    public function wp_pca_debug_info_settings_init() {
+        $wp_pca_debug_info_args = array(
+            'sanitize_callback' => array(&$this, 'sanitize_input_value'),
+            'default' => '0'
+		);
+	    register_setting(
+            'general', 
+            'wp_pca_debug_info_option', 
+            $wp_pca_debug_info_args
+        );
+        add_settings_section(
+            'wp_pca_settings_section',
+            'WP Plugin Compatibility Assistant', array(&$this, 'wp_pca_settings_section_callback'),
+            'general'
+        );
+        add_settings_field(
+            'wp_pca_settings_field',
+            'Debug info', array(&$this, 'wp_pca_settings_field_callback'),
+            'general',
+            'wp_pca_settings_section'
+        );
+    }
+
+    public function sanitize_input_value( $input ) {
+        if ($input == '1') {
+            $input = '1';
+        } else {
+            $input = '0';
+        }
+        return $input;
+    }
+
+    public function wp_pca_settings_section_callback() {
+        echo '<p>Settings</p>';
+    }
+
+    public function wp_pca_settings_field_callback() {
+        $wp_pca_debug_info = $this->get_pca_debug_info_option();
+        ?>
+            <input type="checkbox" id="wp_pca_debug_info_on" name="wp_pca_debug_info_option" value="1" <?php checked($wp_pca_debug_info)?>>
+        <?php
+    }
+
+    public function get_pca_debug_info_option() {
+        $wp_pca_debug_info = get_option('wp_pca_debug_info_option', '0');
+        return $wp_pca_debug_info;
     }
 }
 
