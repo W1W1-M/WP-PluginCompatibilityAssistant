@@ -45,8 +45,13 @@ class WP_PCA_Options {
                     </tr>
                 </table>
                 <h2>Your WP plugins</h2>
-                <?php $this->load_plugin_table( $wp_pca_logic ) ?>
-                <?php if ($this->get_pca_debug_info_option() == true) {$this->dump_plugin_metadata_debug_info($wp_pca_logic);} ?>
+                <?php 
+                    $this->load_plugin_table($wp_pca_logic);
+                    $this->wp_pca_settings();
+                    if ($this->get_pca_debug_info_option() == true) {
+                        $this->dump_plugin_metadata_debug_info($wp_pca_logic);
+                    }
+                ?>
             </div>
             <?php
         } else {
@@ -122,19 +127,19 @@ class WP_PCA_Options {
             'default' => '0'
 		);
 	    register_setting(
-            'general', 
+            'wp_pca_options', 
             'wp_pca_debug_info_option', 
             $wp_pca_debug_info_args
         );
         add_settings_section(
             'wp_pca_settings_section',
-            'WP Plugin Compatibility Assistant', array(&$this, 'wp_pca_settings_section_callback'),
-            'general'
+            'WP-PCA Settings', array(&$this, 'wp_pca_settings_section_callback'),
+            'wp-plugin-compatibility-assistant'
         );
         add_settings_field(
             'wp_pca_settings_field',
-            'Debug info', array(&$this, 'wp_pca_settings_field_callback'),
-            'general',
+            'Show debug info', array(&$this, 'wp_pca_settings_field_callback'),
+            'wp-plugin-compatibility-assistant',
             'wp_pca_settings_section'
         );
     }
@@ -149,7 +154,7 @@ class WP_PCA_Options {
     }
 
     public function wp_pca_settings_section_callback() {
-        echo '<p>Settings</p>';
+        return;
     }
 
     public function wp_pca_settings_field_callback() {
@@ -162,6 +167,18 @@ class WP_PCA_Options {
     public function get_pca_debug_info_option() {
         $wp_pca_debug_info = get_option('wp_pca_debug_info_option', '0');
         return $wp_pca_debug_info;
+    }
+
+    public function wp_pca_settings() {
+        ?>
+            <form action="options.php" method="post">
+                <?php 
+                    settings_fields('wp_pca_options');
+                    do_settings_sections('wp-plugin-compatibility-assistant');
+                    submit_button('Save settings');
+                ?>
+            </form>
+        <?php
     }
 }
 
