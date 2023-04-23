@@ -75,7 +75,7 @@ class WP_PCA_Options {
                 <th>PHP minimum version (required)</th>
                 <th>WordPress minimum version (required)</th>
                 <th>WordPress maximum version (tested)</th>
-                <th>Status</th>
+                <th>Status (active)</th>
             </tr>
         <?php
     }
@@ -96,7 +96,7 @@ class WP_PCA_Options {
                     <td><?php echo $plugin['RequiresPHP']?></td>
                     <td><?php echo $plugin['RequiresWP']?></td>
                     <td><?php echo $plugin['tested']?></td>
-                    <td><?php echo $plugin['status']?></td>
+                    <td><input type="checkbox" <?php checked($plugin['status']) ?> disabled="disabled"/></td>
                 </tr>
             <?php
         }
@@ -160,7 +160,7 @@ class WP_PCA_Options {
     public function wp_pca_settings_field_callback() {
         $wp_pca_debug_info = $this->get_pca_debug_info_option();
         ?>
-            <input type="checkbox" id="wp_pca_debug_info_on" name="wp_pca_debug_info_option" value="1" <?php checked($wp_pca_debug_info)?>>
+            <input type="checkbox" id="wp_pca_debug_info_on" name="wp_pca_debug_info_option" value="1" <?php checked($wp_pca_debug_info) ?>/>
         <?php
     }
 
