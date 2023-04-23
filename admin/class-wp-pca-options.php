@@ -91,11 +91,11 @@ class WP_PCA_Options {
                     <td><a href="<?php echo $plugin['PluginURI']?>" target="_blank"><?php echo $plugin['Name']?></a></td>
                     <td><a href="<?php echo $wp_pca_logic->get_plugin_editor_url($plugin_path)?>" target="_blank"><?php echo $plugin['path']?></a></td>
                     <td><a href="<?php echo $plugin['AuthorURI']?>" target="_blank"><?php echo $plugin['Author']?></a></td>
-                    <td><?php echo $plugin['Version']?></td>
-                    <td><?php echo $plugin['version'] . " (" . $plugin['last_updated'] . ")"?></td>
-                    <td><?php echo $plugin['RequiresPHP']?></td>
-                    <td><?php echo $plugin['RequiresWP']?></td>
-                    <td><?php echo $plugin['tested']?></td>
+                    <td><i><?php echo $plugin['Version']?></i></td>
+                    <td><i><?php echo $plugin['version']?></i><br/><?php echo " (" . $plugin['last_updated'] . ")"?></td>
+                    <td><i><?php echo $plugin['RequiresPHP']?></i></td>
+                    <td><i><?php echo $plugin['RequiresWP']?></i></td>
+                    <td><i><?php echo $plugin['tested']?></i></td>
                     <td><input type="checkbox" <?php checked($plugin['status']) ?> disabled="disabled"/></td>
                 </tr>
             <?php
