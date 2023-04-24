@@ -148,6 +148,16 @@ class WP_PCA_Logic {
         $plugin_editor_url = $this->get_wp_site_url() . "/wp-admin/plugin-editor.php?plugin=" . $plugin_path . "&Submit=Select";
         return $plugin_editor_url;
     }
+
+    // plugin compatibility tests
+
+    public function min_wp_plugin_require($plugin) {
+        if ($this->wordpress_version <= $plugin['RequiresWP']) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
 
 ?>
