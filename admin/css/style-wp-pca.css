@@ -21,6 +21,14 @@ table.wp-pca-table th {
     padding: 1%;
 }
 
+td.wp-pca-table-valid {
+    color: #008000;
+}
+
+td.wp-pca-table-invalid{
+    color: #ff0000;
+}
+
 .debug {
     margin: 1%;
 }

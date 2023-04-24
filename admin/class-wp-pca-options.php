@@ -94,7 +94,7 @@ class WP_PCA_Options {
                     <td><i><?php echo $plugin['Version']?></i></td>
                     <td><i><?php echo $plugin['version']?></i><br/><?php echo " (" . $plugin['last_updated'] . ")"?></td>
                     <td><i><?php echo $plugin['RequiresPHP']?></i></td>
-                    <td><i><?php echo $plugin['RequiresWP']?></i></td>
+                    <td <?php echo $wp_pca_logic->min_wp_plugin_require($plugin) ? 'class="wp-pca-table-valid"' : 'class="wp-pca-table-invalid"' ?>><i><?php echo $plugin['RequiresWP']?></i></td>
                     <td><i><?php echo $plugin['tested']?></i></td>
                     <td><input type="checkbox" <?php checked($plugin['status']) ?> disabled="disabled"/></td>
                 </tr>
