@@ -70,7 +70,7 @@ class WP_PCA_Options {
                 <th>Plugin</th>
                 <th>Path</th>
                 <th>Author</th>
-                <th>Version (current)</th>
+                <th>Version (installed)</th>
                 <th>Version (latest)</th>
                 <th>PHP minimum version (required)</th>
                 <th>WordPress minimum version (required)</th>
@@ -88,15 +88,15 @@ class WP_PCA_Options {
         foreach ($wp_pca_logic->get_installed_plugins_metadata() as $plugin_path=>$plugin) {
             ?> 
                 <tr>
-                    <td><a href="<?php echo $plugin['PluginURI']?>" target="_blank"><?php echo $plugin['Name']?></a></td>
-                    <td><a href="<?php echo $wp_pca_logic->get_plugin_editor_url($plugin_path)?>" target="_blank"><?php echo $plugin['path']?></a></td>
-                    <td><a href="<?php echo $plugin['AuthorURI']?>" target="_blank"><?php echo $plugin['Author']?></a></td>
+                    <td class="wp-pca-table-light"><a href="<?php echo $plugin['PluginURI']?>" target="_blank"><?php echo $plugin['Name']?></a></td>
+                    <td class="wp-pca-table-light"><a href="<?php echo $wp_pca_logic->get_plugin_editor_url($plugin_path)?>" target="_blank"><?php echo $plugin['path']?></a></td>
+                    <td class="wp-pca-table-light"><a href="<?php echo $plugin['AuthorURI']?>" target="_blank"><?php echo $plugin['Author']?></a></td>
                     <td <?php echo $wp_pca_logic->plugin_up_to_date($plugin) ? 'class="wp-pca-table-valid"' : 'class="wp-pca-table-warning"' ?>><i><?php echo $plugin['Version']?></i></td>
-                    <td><i><?php echo $plugin['version']?></i><br/><?php echo " (" . $plugin['last_updated'] . ")"?></td>
+                    <td class="wp-pca-table-light"><i><?php echo $plugin['version']?></i><br/><?php echo " (" . $plugin['last_updated'] . ")"?></td>
                     <td <?php echo $wp_pca_logic->min_php_plugin_require($plugin) ? 'class="wp-pca-table-valid"' : 'class="wp-pca-table-invalid"' ?>><i><?php echo $plugin['RequiresPHP']?></i></td>
                     <td <?php echo $wp_pca_logic->min_wp_plugin_require($plugin) ? 'class="wp-pca-table-valid"' : 'class="wp-pca-table-invalid"' ?>><i><?php echo $plugin['RequiresWP']?></i></td>
                     <td <?php echo $wp_pca_logic->max_wp_plugin_tested($plugin) ? 'class="wp-pca-table-valid"' : 'class="wp-pca-table-warning"' ?>><i><?php echo $plugin['tested']?></i></td>
-                    <td><input type="checkbox" <?php checked($plugin['status']) ?> disabled="disabled"/></td>
+                    <td class="wp-pca-table-light"><input type="checkbox" <?php checked($plugin['status']) ?> disabled="disabled"/></td>
                 </tr>
             <?php
         }
