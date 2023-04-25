@@ -151,8 +151,30 @@ class WP_PCA_Logic {
 
     // plugin compatibility tests
 
-    public function min_wp_plugin_require($plugin) {
-        if ($this->wordpress_version <= $plugin['RequiresWP']) {
+    public function min_wp_plugin_require( $plugin ) {
+        if ( $plugin['RequiresWP'] == 'Unknown metadata' ) {
+            return false;
+        } elseif ( $this->wordpress_version < $plugin['RequiresWP'] ) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public function max_wp_plugin_tested( $plugin ) {
+        if ( $plugin['tested'] == 'Unknown metadata' ) {
+            return false;
+        } elseif ( $this->wordpress_version > $plugin['tested'] ) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public function min_php_plugin_require( $plugin ) {
+        if ( $plugin['RequiresPHP'] == 'Unknown metadata' ) {
+            return false;
+        } elseif ( $this->php_version < $plugin['RequiresPHP'] ) {
             return false;
         } else {
             return true;
