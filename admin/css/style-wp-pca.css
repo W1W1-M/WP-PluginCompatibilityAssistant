@@ -29,6 +29,10 @@ td.wp-pca-table-invalid{
     color: #ff0000;
 }
 
+td.wp-pca-table-warning{
+    color: #ffa500;
+}
+
 .debug {
     margin: 1%;
 }
