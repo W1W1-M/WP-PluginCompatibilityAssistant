@@ -180,6 +180,16 @@ class WP_PCA_Logic {
             return true;
         }
     }
+
+    public function plugin_up_to_date( $plugin ) {
+        if ( $plugin['Version'] == 'Unknown metadata' ) {
+            return false;
+        } elseif ( $plugin['version'] == $plugin['Version'] ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 
 ?>
