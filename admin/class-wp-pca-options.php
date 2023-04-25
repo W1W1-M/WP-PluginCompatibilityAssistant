@@ -91,7 +91,7 @@ class WP_PCA_Options {
                     <td><a href="<?php echo $plugin['PluginURI']?>" target="_blank"><?php echo $plugin['Name']?></a></td>
                     <td><a href="<?php echo $wp_pca_logic->get_plugin_editor_url($plugin_path)?>" target="_blank"><?php echo $plugin['path']?></a></td>
                     <td><a href="<?php echo $plugin['AuthorURI']?>" target="_blank"><?php echo $plugin['Author']?></a></td>
-                    <td><i><?php echo $plugin['Version']?></i></td>
+                    <td <?php echo $wp_pca_logic->plugin_up_to_date($plugin) ? 'class="wp-pca-table-valid"' : 'class="wp-pca-table-warning"' ?>><i><?php echo $plugin['Version']?></i></td>
                     <td><i><?php echo $plugin['version']?></i><br/><?php echo " (" . $plugin['last_updated'] . ")"?></td>
                     <td <?php echo $wp_pca_logic->min_php_plugin_require($plugin) ? 'class="wp-pca-table-valid"' : 'class="wp-pca-table-invalid"' ?>><i><?php echo $plugin['RequiresPHP']?></i></td>
                     <td <?php echo $wp_pca_logic->min_wp_plugin_require($plugin) ? 'class="wp-pca-table-valid"' : 'class="wp-pca-table-invalid"' ?>><i><?php echo $plugin['RequiresWP']?></i></td>
