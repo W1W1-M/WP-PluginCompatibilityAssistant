@@ -6,6 +6,7 @@
     * @author            William Mead
     * @copyright         2023 William Mead
     * @license           https://www.gnu.org/licenses/gpl-3.0.html GNU GPLv3
+    * @version           0.1.0
     *
     * @wordpress-plugin
     * Plugin Name:       WP Plugin Compatibility Assistant
@@ -42,7 +43,15 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-pca-logic.php';
 add_action('plugins_loaded', 'wp_pca_init', 99,0);
 
 wp_enqueue_style('style-wp-pca', plugins_url('admin//css/style-wp-pca.css', __FILE__));
-
+/**
+ * Initializes WP Plugin Compatibility Assistant
+ * 
+ * Setups plugin logic instance and passes it to options instance to generate view
+ * 
+ * @see WP_PCA_Logic
+ * @see WP_PCA_Options
+ * @return void
+ */
 function wp_pca_init() {
     $wp_pca_logic = new WP_PCA_Logic();
     $wp_pca_logic->run();
