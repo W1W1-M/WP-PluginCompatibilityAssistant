@@ -31,7 +31,7 @@ class WP_PCA_Options {
             ?>
             <div class="wrap">
                 <h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
-                <h2>Your WP site</h2>
+                <h2><?php _e('Your WP site', 'wp-plugin-compatibility-assistant'); ?></h2>
                 <table class="wp-pca-table">
                     <tr>
                         <th><h2>PHP version</h2></th>
