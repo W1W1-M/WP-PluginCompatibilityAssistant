@@ -154,6 +154,8 @@ class WP_PCA_Logic {
     public function min_wp_plugin_require( $plugin ) {
         if ( $plugin['RequiresWP'] == 'Unknown metadata' ) {
             return false;
+        } elseif ( $plugin['RequiresWP'] == '') {
+            return false;
         } elseif ( $this->wordpress_version < $plugin['RequiresWP'] ) {
             return false;
         } else {
@@ -163,6 +165,8 @@ class WP_PCA_Logic {
 
     public function max_wp_plugin_tested( $plugin ) {
         if ( $plugin['tested'] == 'Unknown metadata' ) {
+            return false;
+        } elseif ( $plugin['tested'] == '') {
             return false;
         } elseif ( $this->wordpress_version > $plugin['tested'] ) {
             return false;
@@ -174,6 +178,8 @@ class WP_PCA_Logic {
     public function min_php_plugin_require( $plugin ) {
         if ( $plugin['RequiresPHP'] == 'Unknown metadata' ) {
             return false;
+        } elseif ( $plugin['RequiresPHP'] == '') {
+            return false;
         } elseif ( $this->php_version < $plugin['RequiresPHP'] ) {
             return false;
         } else {
@@ -183,6 +189,8 @@ class WP_PCA_Logic {
 
     public function plugin_up_to_date( $plugin ) {
         if ( $plugin['Version'] == 'Unknown metadata' ) {
+            return false;
+        } elseif ( $plugin['version'] == '') {
             return false;
         } elseif ( $plugin['version'] == $plugin['Version'] ) {
             return true;
