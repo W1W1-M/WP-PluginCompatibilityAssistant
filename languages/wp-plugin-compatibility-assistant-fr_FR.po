@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: wp-plugin-compatibility-assistant\n"
-"POT-Creation-Date: 2023-04-26 21:42+0200\n"
-"PO-Revision-Date: 2023-04-26 21:42+0200\n"
+"POT-Creation-Date: 2023-04-27 21:14+0200\n"
+"PO-Revision-Date: 2023-04-27 21:18+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -16,64 +16,82 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: admin\n"
 
-#: admin/class-wp-pca-options.php:34
+#: admin/class-wp-pca-options.php:16
+msgid "Plugin Compatibility"
+msgstr "Compatibilité extensions"
+
+#: admin/class-wp-pca-options.php:35
 msgid "Your WP site"
 msgstr "Votre site WP"
 
-#: admin/class-wp-pca-options.php:37
-msgid "PHP version"
-msgstr ""
-
 #: admin/class-wp-pca-options.php:38
-msgid "WordPress version"
-msgstr ""
+msgid "PHP version"
+msgstr "Version PHP"
 
 #: admin/class-wp-pca-options.php:39
-msgid "Plugins path"
-msgstr ""
+msgid "WordPress version"
+msgstr "Version WordPress"
 
-#: admin/class-wp-pca-options.php:47
+#: admin/class-wp-pca-options.php:40
+msgid "Plugins path"
+msgstr "Chemin extensions"
+
+#: admin/class-wp-pca-options.php:48
 msgid "Your WP plugins"
 msgstr "Vos extensions WP"
 
-#: admin/class-wp-pca-options.php:61
+#: admin/class-wp-pca-options.php:62
 msgid ""
 "You are not authorised to manage these settings. Please contact your "
 "WordPress administrator."
 msgstr ""
-
-#: admin/class-wp-pca-options.php:70
-msgid "Plugin"
-msgstr ""
+"Vous n’êtes pas autorisé à gérer ces réglages. Merci de contacter votre "
+"administrateur WordPress."
 
 #: admin/class-wp-pca-options.php:71
-msgid "Path"
-msgstr ""
+msgid "Plugin"
+msgstr "Extension"
 
 #: admin/class-wp-pca-options.php:72
-msgid "Author"
-msgstr ""
+msgid "Path"
+msgstr "Chemin"
 
 #: admin/class-wp-pca-options.php:73
-msgid "Version (installed)"
-msgstr ""
+msgid "Author"
+msgstr "Auteur"
 
 #: admin/class-wp-pca-options.php:74
-msgid "Version (latest)"
-msgstr ""
+msgid "Version (installed)"
+msgstr "Version (installé)"
 
 #: admin/class-wp-pca-options.php:75
-msgid "PHP minimum version (required)"
-msgstr ""
+msgid "Version (latest)"
+msgstr "Version (dernière)"
 
 #: admin/class-wp-pca-options.php:76
-msgid "WordPress minimum version (required)"
-msgstr ""
+msgid "PHP minimum version (required)"
+msgstr "Version minimum PHP (prérequise)"
 
 #: admin/class-wp-pca-options.php:77
-msgid "WordPress maximum version (tested)"
-msgstr ""
+msgid "WordPress minimum version (required)"
+msgstr "Version minimum WordPress (prérequise)"
 
 #: admin/class-wp-pca-options.php:78
+msgid "WordPress maximum version (tested)"
+msgstr "Version maximum WordPress (testée)"
+
+#: admin/class-wp-pca-options.php:79
 msgid "Status (active)"
-msgstr ""
+msgstr "Statut (activé)"
+
+#: admin/class-wp-pca-options.php:135
+msgid "WP-PCA Settings"
+msgstr "WP-PCA paramètres"
+
+#: admin/class-wp-pca-options.php:141
+msgid "Show debug info"
+msgstr "Afficher infos de débogage"
+
+#: admin/class-wp-pca-options.php:181
+msgid "Save settings"
+msgstr "Enregistrer"

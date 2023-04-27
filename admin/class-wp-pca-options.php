@@ -13,10 +13,11 @@ class WP_PCA_Options {
     }
 
     public function page( $wp_pca_logic ) {
+        $submenu_text = __('Plugin Compatibility', 'wp-plugin-compatibility-assistant');
         add_submenu_page(
             'plugins.php',
             'WP Plugin Compatibility Assistant',
-            'Plugin Compatibility',
+            $submenu_text,
             'manage_options',
             'wp-plugin-compatibility-assistant',
             function() use ( $wp_pca_logic ) {
@@ -131,14 +132,16 @@ class WP_PCA_Options {
             'wp_pca_debug_info_option', 
             $wp_pca_debug_info_args
         );
+        $settings_section_text = __('WP-PCA Settings', 'wp-plugin-compatibility-assistant');
         add_settings_section(
             'wp_pca_settings_section',
-            'WP-PCA Settings', array(&$this, 'wp_pca_settings_section_callback'),
+            $settings_section_text, array(&$this, 'wp_pca_settings_section_callback'),
             'wp-plugin-compatibility-assistant'
         );
+        $settings_field_text = __('Show debug info', 'wp-plugin-compatibility-assistant');
         add_settings_field(
             'wp_pca_settings_field',
-            'Show debug info', array(&$this, 'wp_pca_settings_field_callback'),
+            $settings_field_text, array(&$this, 'wp_pca_settings_field_callback'),
             'wp-plugin-compatibility-assistant',
             'wp_pca_settings_section'
         );
@@ -175,7 +178,7 @@ class WP_PCA_Options {
                 <?php 
                     settings_fields('wp_pca_options');
                     do_settings_sections('wp-plugin-compatibility-assistant');
-                    submit_button('Save settings');
+                    submit_button(__('Save settings', 'wp-plugin-compatibility-assistant'));
                 ?>
             </form>
         <?php
