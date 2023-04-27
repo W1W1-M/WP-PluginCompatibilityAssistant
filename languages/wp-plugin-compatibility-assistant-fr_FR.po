@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: wp-plugin-compatibility-assistant\n"
-"POT-Creation-Date: 2023-04-26 21:28+0200\n"
-"PO-Revision-Date: 2023-04-26 21:29+0200\n"
+"POT-Creation-Date: 2023-04-26 21:42+0200\n"
+"PO-Revision-Date: 2023-04-26 21:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -19,3 +19,61 @@ msgstr ""
 #: admin/class-wp-pca-options.php:34
 msgid "Your WP site"
 msgstr "Votre site WP"
+
+#: admin/class-wp-pca-options.php:37
+msgid "PHP version"
+msgstr ""
+
+#: admin/class-wp-pca-options.php:38
+msgid "WordPress version"
+msgstr ""
+
+#: admin/class-wp-pca-options.php:39
+msgid "Plugins path"
+msgstr ""
+
+#: admin/class-wp-pca-options.php:47
+msgid "Your WP plugins"
+msgstr "Vos extensions WP"
+
+#: admin/class-wp-pca-options.php:61
+msgid ""
+"You are not authorised to manage these settings. Please contact your "
+"WordPress administrator."
+msgstr ""
+
+#: admin/class-wp-pca-options.php:70
+msgid "Plugin"
+msgstr ""
+
+#: admin/class-wp-pca-options.php:71
+msgid "Path"
+msgstr ""
+
+#: admin/class-wp-pca-options.php:72
+msgid "Author"
+msgstr ""
+
+#: admin/class-wp-pca-options.php:73
+msgid "Version (installed)"
+msgstr ""
+
+#: admin/class-wp-pca-options.php:74
+msgid "Version (latest)"
+msgstr ""
+
+#: admin/class-wp-pca-options.php:75
+msgid "PHP minimum version (required)"
+msgstr ""
+
+#: admin/class-wp-pca-options.php:76
+msgid "WordPress minimum version (required)"
+msgstr ""
+
+#: admin/class-wp-pca-options.php:77
+msgid "WordPress maximum version (tested)"
+msgstr ""
+
+#: admin/class-wp-pca-options.php:78
+msgid "Status (active)"
+msgstr ""

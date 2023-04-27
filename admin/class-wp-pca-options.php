@@ -34,9 +34,9 @@ class WP_PCA_Options {
                 <h2><?php _e('Your WP site', 'wp-plugin-compatibility-assistant'); ?></h2>
                 <table class="wp-pca-table">
                     <tr>
-                        <th><h2>PHP version</h2></th>
-                        <th><h2>WordPress version</h2></th>
-                        <th><h2>Plugins path</h2></th>
+                        <th><h2><?php _e('PHP version', 'wp-plugin-compatibility-assistant'); ?></h2></th>
+                        <th><h2><?php _e('WordPress version', 'wp-plugin-compatibility-assistant'); ?></h2></th>
+                        <th><h2><?php _e('Plugins path', 'wp-plugin-compatibility-assistant'); ?></h2></th>
                     </tr>
                     <tr>
                         <td><h4><?php $wp_pca_logic->print_php_version(); ?></h4></td>
@@ -44,7 +44,7 @@ class WP_PCA_Options {
                         <td><h4><?php $wp_pca_logic->print_plugins_url(); ?></h4></td>
                     </tr>
                 </table>
-                <h2>Your WP plugins</h2>
+                <h2><?php _e('Your WP plugins', 'wp-plugin-compatibility-assistant'); ?></h2>
                 <?php 
                     $this->load_plugin_table($wp_pca_logic);
                     $this->wp_pca_settings();
@@ -58,7 +58,7 @@ class WP_PCA_Options {
             ?>
             <div class="wrap">
                 <h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
-                <h3>You are not authorised to manage these settings. Please contact your WordPress administrator.</h3>
+                <h3><?php _e('You are not authorised to manage these settings. Please contact your WordPress administrator.', 'wp-plugin-compatibility-assistant'); ?></h3>
             </div>
             <?php
         }
@@ -67,15 +67,15 @@ class WP_PCA_Options {
     public function plugin_table_header() {
         ?>
             <tr>
-                <th>Plugin</th>
-                <th>Path</th>
-                <th>Author</th>
-                <th>Version (installed)</th>
-                <th>Version (latest)</th>
-                <th>PHP minimum version (required)</th>
-                <th>WordPress minimum version (required)</th>
-                <th>WordPress maximum version (tested)</th>
-                <th>Status (active)</th>
+                <th><?php _e('Plugin', 'wp-plugin-compatibility-assistant'); ?></th>
+                <th><?php _e('Path', 'wp-plugin-compatibility-assistant'); ?></th>
+                <th><?php _e('Author', 'wp-plugin-compatibility-assistant'); ?></th>
+                <th><?php _e('Version (installed)', 'wp-plugin-compatibility-assistant'); ?></th>
+                <th><?php _e('Version (latest)', 'wp-plugin-compatibility-assistant'); ?></th>
+                <th><?php _e('PHP minimum version (required)', 'wp-plugin-compatibility-assistant'); ?></th>
+                <th><?php _e('WordPress minimum version (required)', 'wp-plugin-compatibility-assistant'); ?></th>
+                <th><?php _e('WordPress maximum version (tested)', 'wp-plugin-compatibility-assistant'); ?></th>
+                <th><?php _e('Status (active)', 'wp-plugin-compatibility-assistant'); ?></th>
             </tr>
         <?php
     }
