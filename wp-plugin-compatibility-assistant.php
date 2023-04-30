@@ -12,7 +12,7 @@
     * Plugin Name:       WP Plugin Compatibility Assistant
     * Plugin URI:        https://github.com/W1W1-M/WP-PluginCompatibilityAssistant
     * Description:       A WordPress plugin to assist website administrators in managing plugin compatibility
-    * Version:           0.1.0
+    * Version:           1.0.0
     * Requires at least: 5.9.5
     * Requires PHP:      8.0.28
     * Author:            William Mead
