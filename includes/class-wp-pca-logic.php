@@ -90,11 +90,16 @@ class WP_PCA_Logic {
             $plugin_page = plugins_api('plugin_information', array('slug' => $plugin_slug, 'fields' => $plugin_page_fields));
             if (is_wp_error($plugin_page)) {
                 foreach ($plugin_page_fields as $key=>$value) {
-                    $metadata[$key] = "Unknown metadata";
+                    $metadata[$key] = 'Unknown metadata';
                 }
             } else {
                 foreach ($plugin_page as $page_metadata=>$value) {
                     $metadata[$page_metadata] = $value;
+                }
+            }
+            foreach( $metadata as $key=>$value ) {
+                if ( $value == '' || NULL ) {
+                    $metadata[$key] = 'Unknown metadata';
                 }
             }
             $this->installed_plugins_metadata[$plugin] = $metadata;
