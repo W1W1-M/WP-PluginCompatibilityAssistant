@@ -37,13 +37,17 @@ You should have received a copy of the GNU General Public License
 along with WP Plugin Compatibility Assistant. If not, see https://www.gnu.org/licenses/gpl-3.0.html.
 */
 
+/* PHP requires */
 require_once plugin_dir_path( __FILE__ ) . 'admin/class-wp-pca-options.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-pca-logic.php';
 
-add_action( 'init', 'wp_pca_load_textdomain' );
-add_action('plugins_loaded', 'wp_pca_init', 99,0);
+/* WordPress actions */
+add_action( 'init', 'wp_pca_load_textdomain', 50, 0 );
+add_action( 'plugins_loaded', 'wp_pca_init', 99, 0 );
 
-wp_enqueue_style('style-wp-pca', plugins_url('admin//css/style-wp-pca.css', __FILE__));
+/* WordPress styles */
+wp_enqueue_style( 'style-wp-pca', plugins_url( 'admin//css/style-wp-pca.css', __FILE__ ) );
+
 /**
  * Initializes WP Plugin Compatibility Assistant
  * 
@@ -62,6 +66,10 @@ function wp_pca_init() {
 
 /** 
  * Load WP PCA plugin textdomain
+ * 
+ * Loads plugin localization files from languages folder
+ * 
+ * @return void
 */
 function wp_pca_load_textdomain() {
     load_plugin_textdomain( 'wp-plugin-compatibility-assistant', false, basename( dirname( __FILE__ ) ) . '/languages/' );
