@@ -1,5 +1,6 @@
 # WP Plugin Compatibility Assistant
 A WordPress plugin to assist webmasters, system administrators and any tekkie in need of reviewing plugin compatibility.
+![WP-PCA screenshot english](/assets/WP-PCA%20v1.0.0%20screenshot%20EN.png "WP-PCA screenshot english")
 ## Features
 ### v1.0.0 "Proof of Concept" :
 - Table view of plugins
