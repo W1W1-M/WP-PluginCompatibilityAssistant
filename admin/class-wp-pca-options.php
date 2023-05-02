@@ -5,14 +5,13 @@ require_once ABSPATH . 'wp-admin/includes/template.php';
 
 class WP_PCA_Options {
 
-    public function run( $wp_pca_logic ) {
-        add_action('admin_menu', function() use ( $wp_pca_logic ) {
-            $this->page($wp_pca_logic);
+    public function run( $wp_pca_logic, $wp_pca_settings ) {
+        add_action('admin_menu', function() use ( $wp_pca_logic, $wp_pca_settings ) {
+            $this->page( $wp_pca_logic, $wp_pca_settings );
         });
-        add_action('admin_init', array(&$this, 'wp_pca_debug_info_settings_init'));
     }
 
-    public function page( $wp_pca_logic ) {
+    public function page( $wp_pca_logic, $wp_pca_settings ) {
         $submenu_text = __('Plugin Compatibility', 'wp-plugin-compatibility-assistant');
         add_submenu_page(
             'plugins.php',
@@ -20,13 +19,13 @@ class WP_PCA_Options {
             $submenu_text,
             'manage_options',
             'wp-plugin-compatibility-assistant',
-            function() use ( $wp_pca_logic ) {
-                $this->page_html($wp_pca_logic);
+            function() use ( $wp_pca_logic, $wp_pca_settings ) {
+                $this->page_html( $wp_pca_logic, $wp_pca_settings );
             }
         );
     }
 
-    public function page_html( $wp_pca_logic ) {
+    public function page_html( $wp_pca_logic, $wp_pca_settings ) {
         // check user capabilities
         if ( current_user_can( 'manage_options' ) ) {
             ?>
@@ -47,10 +46,10 @@ class WP_PCA_Options {
                 </table>
                 <h2><?php _e('Your WP plugins', 'wp-plugin-compatibility-assistant'); ?></h2>
                 <?php 
-                    $this->load_plugin_table($wp_pca_logic);
-                    $this->wp_pca_settings();
-                    if ($this->get_pca_debug_info_option() == true) {
-                        $this->dump_plugin_metadata_debug_info($wp_pca_logic);
+                    $this->load_plugin_table( $wp_pca_logic );
+                    $wp_pca_settings->wp_pca_settings();
+                    if ( $wp_pca_settings->get_pca_debug_info_option() == true ) {
+                        $this->dump_plugin_metadata_debug_info( $wp_pca_logic );
                     }
                 ?>
             </div>
@@ -120,69 +119,6 @@ class WP_PCA_Options {
         }
     }
 
-    // PCA options methods
-
-    public function wp_pca_debug_info_settings_init() {
-        $wp_pca_debug_info_args = array(
-            'sanitize_callback' => array(&$this, 'sanitize_input_value'),
-            'default' => '0'
-		);
-	    register_setting(
-            'wp_pca_options', 
-            'wp_pca_debug_info_option', 
-            $wp_pca_debug_info_args
-        );
-        $settings_section_text = __('WP-PCA Settings', 'wp-plugin-compatibility-assistant');
-        add_settings_section(
-            'wp_pca_settings_section',
-            $settings_section_text, array(&$this, 'wp_pca_settings_section_callback'),
-            'wp-plugin-compatibility-assistant'
-        );
-        $settings_field_text = __('Show debug info', 'wp-plugin-compatibility-assistant');
-        add_settings_field(
-            'wp_pca_settings_field',
-            $settings_field_text, array(&$this, 'wp_pca_settings_field_callback'),
-            'wp-plugin-compatibility-assistant',
-            'wp_pca_settings_section'
-        );
-    }
-
-    public function sanitize_input_value( $input ) {
-        if ($input == '1') {
-            $input = '1';
-        } else {
-            $input = '0';
-        }
-        return $input;
-    }
-
-    public function wp_pca_settings_section_callback() {
-        return;
-    }
-
-    public function wp_pca_settings_field_callback() {
-        $wp_pca_debug_info = $this->get_pca_debug_info_option();
-        ?>
-            <input type="checkbox" id="wp_pca_debug_info_on" name="wp_pca_debug_info_option" value="1" <?php checked($wp_pca_debug_info) ?>/>
-        <?php
-    }
-
-    public function get_pca_debug_info_option() {
-        $wp_pca_debug_info = get_option('wp_pca_debug_info_option', '0');
-        return $wp_pca_debug_info;
-    }
-
-    public function wp_pca_settings() {
-        ?>
-            <form action="options.php" method="post">
-                <?php 
-                    settings_fields('wp_pca_options');
-                    do_settings_sections('wp-plugin-compatibility-assistant');
-                    submit_button(__('Save settings', 'wp-plugin-compatibility-assistant'));
-                ?>
-            </form>
-        <?php
-    }
 }
 
 ?>

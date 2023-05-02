@@ -40,6 +40,7 @@ along with WP Plugin Compatibility Assistant. If not, see https://www.gnu.org/li
 /* PHP requires */
 require_once plugin_dir_path( __FILE__ ) . 'admin/class-wp-pca-options.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-pca-logic.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-pca-settings.php';
 
 /* WordPress actions */
 add_action( 'init', 'wp_pca_load_textdomain', 50, 0 );
@@ -60,8 +61,10 @@ wp_enqueue_style( 'style-wp-pca', plugins_url( 'admin//css/style-wp-pca.css', __
 function wp_pca_init() {
     $wp_pca_logic = new WP_PCA_Logic();
     $wp_pca_logic->run();
+    $wp_pca_settings = new WP_PCA_Settings();
+    $wp_pca_settings->run();
     $wp_pca_options = new WP_PCA_Options();
-    $wp_pca_options->run($wp_pca_logic);
+    $wp_pca_options->run( $wp_pca_logic, $wp_pca_settings );
 }
 
 /** 
