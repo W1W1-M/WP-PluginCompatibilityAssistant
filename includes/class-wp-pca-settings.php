@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * WP-PCA settings class
+ * 
+ * Uses WordPress settings API for managing WP-PCA settings.
+ */
 class WP_PCA_Settings {
 
     public function run() {

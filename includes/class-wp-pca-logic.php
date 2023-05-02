@@ -1,10 +1,14 @@
 <?php
 
+/* PHP requires */
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
 require_once ABSPATH . 'wp-admin/includes/plugin-install.php';
-require_once ABSPATH . 'wp-includes/general-template.php';
-require_once ABSPATH . 'wp-includes/link-template.php';
 
+/**
+ * Core WP-PCA logic
+ * 
+ * Collects, aggregates and sanitizes plugin data.
+ */
 class WP_PCA_Logic {
 
     // variables

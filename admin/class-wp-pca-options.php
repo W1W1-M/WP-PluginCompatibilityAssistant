@@ -1,8 +1,10 @@
 <?php
 
-require_once ABSPATH . 'wp-includes/option.php';
-require_once ABSPATH . 'wp-admin/includes/template.php';
-
+/**
+ * WP-PCA options page class
+ * 
+ * Contains logic for adding plugins submenu item, options page, plugins table & debug information.
+ */
 class WP_PCA_Options {
 
     public function run( $wp_pca_logic, $wp_pca_settings ) {
