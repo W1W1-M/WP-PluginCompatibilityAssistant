@@ -58,7 +58,7 @@ wp_enqueue_style( 'style-wp-pca', plugins_url( 'admin//css/style-wp-pca.css', __
  * @see WP_PCA_Options
  * @return void
  */
-function wp_pca_init() {
+function wp_pca_init(): void {
     $wp_pca_logic = new WP_PCA_Logic();
     $wp_pca_logic->run();
     $wp_pca_settings = new WP_PCA_Settings();
@@ -74,7 +74,7 @@ function wp_pca_init() {
  * 
  * @return void
 */
-function wp_pca_load_textdomain() {
+function wp_pca_load_textdomain(): void {
     load_plugin_textdomain( 'wp-plugin-compatibility-assistant', false, basename( dirname( __FILE__ ) ) . '/languages/' );
 }
 
