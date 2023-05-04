@@ -1,19 +1,19 @@
 <?php
 
 /**
- * WP-PCA options page class
+ * WP-PCA view class
  * 
  * Contains logic for adding plugins submenu item, options page, plugins table & debug information.
  */
-class WP_PCA_Options {
+class WP_PCA_View {
 
-    public function run( $wp_pca_logic, $wp_pca_settings ): void {
+    public function setup( $wp_pca_logic, $wp_pca_settings ): void {
         add_action('admin_menu', function() use ( $wp_pca_logic, $wp_pca_settings ) {
-            $this->page( $wp_pca_logic, $wp_pca_settings );
+            $this->setup_submenu_with_page( $wp_pca_logic, $wp_pca_settings );
         });
     }
 
-    public function page( $wp_pca_logic, $wp_pca_settings ): void {
+    public function setup_submenu_with_page( $wp_pca_logic, $wp_pca_settings ): void {
         $submenu_text = __('Plugin Compatibility', 'wp-plugin-compatibility-assistant');
         add_submenu_page(
             'plugins.php',
@@ -22,12 +22,12 @@ class WP_PCA_Options {
             'manage_options',
             'wp-plugin-compatibility-assistant',
             function() use ( $wp_pca_logic, $wp_pca_settings ) {
-                $this->page_html( $wp_pca_logic, $wp_pca_settings );
+                $this->setup_page( $wp_pca_logic, $wp_pca_settings );
             }
         );
     }
 
-    public function page_html( $wp_pca_logic, $wp_pca_settings ): void {
+    public function setup_page( $wp_pca_logic, $wp_pca_settings ): void {
         // check user capabilities
         if ( current_user_can( 'manage_options' ) ) {
             ?>
@@ -48,10 +48,10 @@ class WP_PCA_Options {
                 </table>
                 <h2><?php _e('Your WP plugins', 'wp-plugin-compatibility-assistant'); ?></h2>
                 <?php 
-                    $this->load_plugin_table( $wp_pca_logic );
+                    $this->setup_plugin_table( $wp_pca_logic );
                     $wp_pca_settings->wp_pca_settings();
                     if ( $wp_pca_settings->get_pca_debug_info_option() == true ) {
-                        $this->dump_plugin_metadata_debug_info( $wp_pca_logic );
+                        $this->debug_dump_plugins_metadata( $wp_pca_logic );
                     }
                 ?>
             </div>
@@ -66,7 +66,7 @@ class WP_PCA_Options {
         }
     }
 
-    public function plugin_table_header(): void {
+    public function setup_plugin_table_header(): void {
         ?>
             <tr>
                 <th><?php _e('Plugin', 'wp-plugin-compatibility-assistant'); ?></th>
@@ -82,11 +82,11 @@ class WP_PCA_Options {
         <?php
     }
 
-    public function load_plugin_table( $wp_pca_logic ): void {
+    public function setup_plugin_table( $wp_pca_logic ): void {
         ?>
             <table class="wp-pca-table">
         <?php
-        $this->plugin_table_header();
+        $this->setup_plugin_table_header();
         foreach ($wp_pca_logic->get_installed_plugins_metadata() as $plugin_path=>$plugin) {
             ?> 
                 <tr>
@@ -107,7 +107,7 @@ class WP_PCA_Options {
         <?php
     }
 
-    public function dump_plugin_metadata_debug_info( $wp_pca_logic ): void {
+    public function debug_dump_plugins_metadata( $wp_pca_logic ): void {
         ?><h2>Debug info</h2><?php
         foreach ($wp_pca_logic->get_installed_plugins_metadata() as $plugin) {
             ?><h3>Plugin metadata : <?php echo $plugin['Name']?> </h3><?php

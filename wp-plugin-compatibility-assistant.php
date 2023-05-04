@@ -38,7 +38,7 @@ along with WP Plugin Compatibility Assistant. If not, see https://www.gnu.org/li
 */
 
 /* PHP requires */
-require_once plugin_dir_path( __FILE__ ) . 'admin/class-wp-pca-options.php';
+require_once plugin_dir_path( __FILE__ ) . 'admin/class-wp-pca-view.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-pca-logic.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-pca-settings.php';
 
@@ -52,10 +52,10 @@ wp_enqueue_style( 'style-wp-pca', plugins_url( 'admin//css/style-wp-pca.css', __
 /**
  * Initializes WP Plugin Compatibility Assistant
  * 
- * Setups plugin logic instance and passes it to options instance to generate view
+ * Setups plugin logic & settings instances and passes it to view instance to generate admin panel page
  * 
  * @see WP_PCA_Logic
- * @see WP_PCA_Options
+ * @see WP_PCA_View
  * @return void
  */
 function wp_pca_init(): void {
@@ -63,8 +63,8 @@ function wp_pca_init(): void {
     $wp_pca_logic->run();
     $wp_pca_settings = new WP_PCA_Settings();
     $wp_pca_settings->run();
-    $wp_pca_options = new WP_PCA_Options();
-    $wp_pca_options->run( $wp_pca_logic, $wp_pca_settings );
+    $wp_pca_view = new WP_PCA_View();
+    $wp_pca_view->setup( $wp_pca_logic, $wp_pca_settings );
 }
 
 /** 
