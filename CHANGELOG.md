@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Readme
-- WP_PCA_Options class
+- Renamed WP_PCA_Options class to WP_PCA_View
 
 ### Removed
 
