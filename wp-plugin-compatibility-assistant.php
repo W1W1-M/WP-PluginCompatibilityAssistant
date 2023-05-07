@@ -62,7 +62,7 @@ function wp_pca_init(): void {
     $wp_pca_logic = new WP_PCA_Logic();
     $wp_pca_logic->run();
     $wp_pca_settings = new WP_PCA_Settings();
-    $wp_pca_settings->run();
+    $wp_pca_settings->setup();
     $wp_pca_view = new WP_PCA_View();
     $wp_pca_view->setup( $wp_pca_logic, $wp_pca_settings );
 }

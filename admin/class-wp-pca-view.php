@@ -49,7 +49,7 @@ class WP_PCA_View {
                 <h2><?php _e('Your WP plugins', 'wp-plugin-compatibility-assistant'); ?></h2>
                 <?php 
                     $this->setup_plugin_table( $wp_pca_logic );
-                    $wp_pca_settings->wp_pca_settings();
+                    $wp_pca_settings->setup_settings_form();
                     if ( $wp_pca_settings->get_pca_debug_info_option() == true ) {
                         $this->debug_dump_plugins_metadata( $wp_pca_logic );
                     }
@@ -119,6 +119,18 @@ class WP_PCA_View {
                 ?> </p> <?php
             }
         }
+    }
+
+    public function setup_settings_form() {
+        ?>
+            <form action="options.php" method="post">
+                <?php 
+                    settings_fields( 'wp_pca_options' );
+                    do_settings_sections( 'wp-plugin-compatibility-assistant' );
+                    submit_button( __( 'Save settings', 'wp-plugin-compatibility-assistant' ) );
+                ?>
+            </form>
+        <?php
     }
 
 }
